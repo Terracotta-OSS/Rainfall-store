@@ -1,7 +1,8 @@
 #!/bin/bash
 ### BEGIN INIT INFO
 # Provides: rainfall-store
-# Required-Start: network
+# Required-Start:    $local_fs $network $remote_fs $syslog $time
+# Required-Stop:     $local_fs $network $remote_fs $syslog $time
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
 # Description: Rainfall-store init script
@@ -27,7 +28,7 @@ function start_rainfall-store {
     APP_PROPS=${rainfall_store_props:-prod.props}
     echo "Properties: ${APP_PROPS}"
 
-    JAVA_PATH=${JAVA_HOME:-/jdk-zulu-1.8}
+    JAVA_PATH=${JAVA_HOME:-/jdk/zulu-1.8}
 
     echo "Java installation: $JAVA_PATH"
     echo "Starting rainfall-store"
